@@ -1,10 +1,9 @@
 <template>
     <div class="container">
-        <div class="error" v-if="error">
-            <h1>Oooops! Something went wrong.</h1>
-            <h3>{{ error }}</h3>
-        </div>
+        <preloader></preloader>
+        <error v-if="error" :text="error"></error>
         <tile
+            v-else
             v-for="item in tiles"
             :id="item.id"
             :title="item.title"
@@ -18,11 +17,15 @@
 
 <script>
     import Tile from '../components/Tile.vue';
+    import ErrorMixin from '../components/ErrorMixin.vue';
+    import Preloader from '../components/Preloader.vue';
 
     export default {
-        name: "HomePage",
+        name: 'HomePage',
+        mixins: [ ErrorMixin ],
         components: {
             Tile,
+            Preloader,
         },
         data() {
             return {
@@ -32,9 +35,6 @@
             tiles() {
                 return this.$store.state.tiles;
             },
-            error() {
-                return this.$store.state.error;
-            }
         }
     }
 </script>
@@ -44,10 +44,5 @@
         position: relative;
         height: 100%;
         width: 100%;
-    }
-    .error {
-        color: #721c24;
-        background-color: #f8d7da;
-        padding: .75rem 1.25rem;
     }
 </style>

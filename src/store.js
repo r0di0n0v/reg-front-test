@@ -7,6 +7,7 @@ export default new Vuex.Store({
     state: {
         tiles: [],
         error: '',
+        loading: false,
     },
     mutations: {
         /**
@@ -117,6 +118,15 @@ export default new Vuex.Store({
         setError(state, e) {
             state.error = e;
         },
+        /**
+         * Установка состояния загрузки
+         *
+         * @param state
+         * @param isLoading
+         */
+        setLoadingState(state, isLoading) {
+            state.loading = isLoading === true ? true : false;
+        }
     },
     getters: {
         /**
@@ -128,7 +138,8 @@ export default new Vuex.Store({
         getTileById(state) {
             return (id) => {
                 const intId = parseInt(id, 10);
-                return state.tiles.find(tile => tile.id === intId);
+                return state.tiles.find(tile => tile.id === intId)
+                    || { id: null, type: null, title: null, description: null, text: null };
             }
         },
     }

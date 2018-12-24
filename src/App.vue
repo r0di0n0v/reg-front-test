@@ -27,10 +27,12 @@
         methods: {
             ...mapMutations([
                 'loadTilesToStore',
+                'setLoadingState',
                 'setError',
             ]),
             loadTiles() {
                 this.setError('');
+                this.setLoadingState(true);
                 fetch('/api/tiles')
                     .then(res => res.json())
                     .then((res) => {
@@ -47,10 +49,11 @@
                     .catch((e) => {
                         console.error(e);
                         this.setError(e.toString());
+                        this.setLoadingState(false);
                     });
             }
         },
-        mounted() {
+        created() {
             this.loadTiles();
         }
     };

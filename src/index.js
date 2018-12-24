@@ -3,10 +3,10 @@ import VueRouter from 'vue-router';
 
 import store from './store';
 import App from './App.vue';
-import HomePage from "./pages/HomePage.vue";
-import ArticlePage from "./pages/ArticlePage.vue";
-import AboutPage from "./pages/AboutPage.vue";
-import NotFound from "./pages/NotFoundPage.vue";
+import HomePage from './pages/HomePage.vue';
+import ArticlePage from './pages/ArticlePage.vue';
+import AboutPage from './pages/AboutPage.vue';
+import NotFound from './pages/NotFoundPage.vue';
 
 Vue.use(VueRouter);
 
