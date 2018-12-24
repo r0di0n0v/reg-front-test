@@ -1,12 +1,14 @@
 <template>
     <div class="container">
-        <h1>This is About page</h1>
+        <h1>Oooops!</h1>
+        <h3>Not found</h3>
+        <router-link to="/">Go Home</router-link>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'AboutPage',
+        name: "NotFoundPage"
     }
 </script>
 

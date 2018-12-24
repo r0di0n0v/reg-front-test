@@ -1,6 +1,6 @@
 <template>
     <div class="app-layout">
-        <navbar :links="links"></navbar>
+        <navbar :links="links" class="navbar-container"></navbar>
         <div class="page-container">
             <router-view></router-view>
         </div>
@@ -27,18 +27,27 @@
         methods: {
             ...mapMutations([
                 'loadTilesToStore',
+                'setError',
             ]),
             loadTiles() {
+                this.setError('');
                 fetch('/api/tiles')
                     .then(res => res.json())
                     .then((res) => {
                         if (typeof res === 'object') {
                             if (res.success === true) {
                                 this.loadTilesToStore(res.tiles);
+                            } else {
+                                throw Error('Request not succeed');
                             }
+                        } else {
+                            throw Error('Wrong request format');
                         }
+                    })
+                    .catch((e) => {
+                        console.error(e);
+                        this.setError(e.toString());
                     });
-
             }
         },
         mounted() {
@@ -58,5 +67,8 @@
     }
     .page-container {
         height: calc(100% - 50px);
+    }
+    .navbar-container {
+        height: 50px !important;
     }
 </style>

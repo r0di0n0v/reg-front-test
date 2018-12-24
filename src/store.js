@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         tiles: [],
+        error: '',
     },
     mutations: {
         /**
@@ -107,6 +108,15 @@ export default new Vuex.Store({
                 })
             }
         },
+        /**
+         * Установка сообщения об ошибке
+         *
+         * @param state
+         * @param e
+         */
+        setError(state, e) {
+            state.error = e;
+        },
     },
     getters: {
         /**
@@ -118,7 +128,7 @@ export default new Vuex.Store({
         getTileById(state) {
             return (id) => {
                 const intId = parseInt(id, 10);
-                return state.tiles.find(tile => tile.id === intId) || { id: '', title: '', text: '', description: '' };
+                return state.tiles.find(tile => tile.id === intId);
             }
         },
     }

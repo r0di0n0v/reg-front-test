@@ -12,7 +12,11 @@
         name: 'ArticlePage',
         computed: {
             tile() {
-                return this.$store.getters.getTileById(this.$route.params.id)
+                const tile = this.$store.getters.getTileById(this.$route.params.id);
+                if (!tile) {
+                    return this.$router.push('/404');
+                }
+                return tile;
             }
         },
     }
