@@ -49,8 +49,8 @@
                     .catch((e) => {
                         console.error(e);
                         this.setError(e.toString());
-                        this.setLoadingState(false);
-                    });
+                    })
+                    .then(() => this.setLoadingState(false));
             }
         },
         created() {

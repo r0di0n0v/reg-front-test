@@ -5,6 +5,7 @@
         <tile
             v-else
             v-for="item in tiles"
+            :key="item.id"
             :id="item.id"
             :title="item.title"
             :description="item.description"
